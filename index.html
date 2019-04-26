@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>VueFirst</title>
+</head>
+<body>
+  <main class="container" id="app">
+    <h1>Cars application</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="search" class="d-block">Your car</label>
+          <input type="text" 
+          id="search" class=" 
+          form-controll d-block w-100 pl-3 pr-3 pt-1 pb-1 rounded" 
+          placeholder="Name, Model"
+          v-model="search"
+        >
+        </div>
+        <hr>
+        <ul class="list-group">
+          <li
+            v-for="(car, index) in filteredCars" 
+            class="list-group-item list-group-item-action pointer"
+            @click= "selectCar(index)"
+            :class= "{'active': selectedCarIndex === index}"
+          >
+            {{car.name}} - {{car.model}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-5">
+              <h2>{{car.name}}</h2>
+              <img 
+                v-bind:src="car.image"
+                :alt="car.image"
+                class="main-img rounded">
+          </div>
+          <div class="col-md-7">
+            <h4 class="mt-2">Car details</h3>
+            <ul>
+              <li>model - <strong>{{car.model}}</strong></li>
+              <li>year - <strong>{{car.year}}</strong></li>
+              <li>owner - <strong>{{car.owner}}</strong></li>
+            </ul>
+            <div class="phone-wrap">
+              <p v-if='phoneVisible'>{{car.phone}}</p>
+            </div>
+            <button 
+              class="btn btn-outline-success" 
+              @click="phoneVisible = !phoneVisible"
+            >{{PhoneBtnText}}</button>
+            <button 
+              class="btn btn-primary"
+              @click="modalVisible = true"
+            >Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- <div class="modal fade show" v-if="modalVisible" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Do you want to buy this car?</h5>
+          <button @click="modalVisible = false" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button @click="modalVisible = false" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop fade show" v-if="modalVisible"></div> -->
+  
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- <script src="js/bootstrap.min.js"></script> -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="js/main.js"></script>
+
+</html>
